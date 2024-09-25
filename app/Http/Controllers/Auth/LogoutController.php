@@ -10,6 +10,43 @@ class LogoutController extends Controller
 {
     /**
      * Handle the incoming request.
+     *
+     * @OA\Post(
+     *      path = "/api/logout",
+     *      summary = "Logout",
+     *      tags={"Auth"},
+     *      security={ {"sanctum": {} }},
+     *
+     *      @OA\Response(
+     *          response = 500,
+     *          description = "Internal server error"
+     *      ),
+     *      @OA\Response(
+     *          response = 200,
+     *          description = "User logged out",
+     *
+     *          @OA\JsonContent(
+     *
+     *              @OA\Schema(
+     *
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="boolean"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="message",
+     *                      type="string"
+     *                  ),
+     *              ),
+     *
+     *              @OA\Examples(
+     *                  example = "result",
+     *                  value = {"status": true, "message": "User Logged Out Successfully"},
+     *                  summary = "An result object"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function __invoke(Request $request)
     {
