@@ -15,7 +15,7 @@ class PostAllController extends Controller
     public function __invoke(Request $request)
     {
         try {
-            return PostResource::collection(Post::all());
+            return PostResource::collection(Post::paginate());
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
