@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Post\PostAllController;
+use App\Http\Controllers\Post\PostGetSpecificController;
 use App\Http\Controllers\User\UserGetSpecificController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,5 @@ Route::middleware(['auth:sanctum'])->group(function() {
      * API endpoints for Post
      */
     Route::get('/posts', PostAllController::class);
+    Route::get('/posts/{id}', PostGetSpecificController::class);
 });
