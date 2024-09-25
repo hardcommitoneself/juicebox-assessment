@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendWelcomeEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +40,11 @@ class RegisterController extends Controller
             $user->password = Hash::make($request->password);
 
             $user->save();
+
+            /**
+             * Send welcome email to the user
+             */
+            SendWelcomeEmail::dispatch($user);
 
             return response()->json([
                 'status' => true,
