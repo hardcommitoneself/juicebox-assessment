@@ -98,12 +98,401 @@
                     }
                 ]
             }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register",
+                "description": "Handle the incoming request.",
+                "operationId": "08895790736612da345bc0606cefe61b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "John Doe",
+                                    "email": "john@test.com",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "User Created Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object",
+                                        "value": {
+                                            "status": true,
+                                            "message": "User Created Successfully",
+                                            "token": "6|ZtL5S6oXw66EMH3fSpJAJM6Yab38ygdGqHCIwM6Xbc93cc5a"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "List all posts",
+                "description": "Handle the incoming request.",
+                "operationId": "fe1699edc7b2d499fa757c78b3a799f1",
+                "responses": {
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "List all posts",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "List all posts": {
+                                        "summary": "List all posts",
+                                        "value": {
+                                            "data": [],
+                                            "links": [],
+                                            "meta": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Create a new post",
+                "description": "Handle the incoming request.",
+                "operationId": "08a317c8a3a847eac190d73ad12183ad",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Test post",
+                                    "description": "Test description"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "Create a new post",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "A new post created": {
+                                        "summary": "A new post created",
+                                        "value": {
+                                            "id": 1,
+                                            "title": "Test post",
+                                            "description": "Test description"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/posts/{id}": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get a specific post",
+                "description": "Handle the incoming request.",
+                "operationId": "6d33a36a64f6425176ea67cd55ef9926",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to fetch",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "Get a specific post",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Get a specific post": {
+                                        "summary": "Get a specific post",
+                                        "value": {
+                                            "data": {
+                                                "id": 1,
+                                                "title": "Test post",
+                                                "description": "Test description"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Delete a post",
+                "description": "Handle the incoming request.",
+                "operationId": "4b593f04a83411abb9e0422cde19b339",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "Delete a post",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Delete a post": {
+                                        "summary": "Delete a post",
+                                        "value": {
+                                            "status": true,
+                                            "message": "Post Deleted Successfully"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Update an existing post",
+                "description": "Handle the incoming request.",
+                "operationId": "d81e5c8004776ab345ab16180a5d40a4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of post to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Test post",
+                                    "description": "Test description"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "Update an existing post",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Update an existing post": {
+                                        "summary": "Update an existing post",
+                                        "value": {
+                                            "id": 1,
+                                            "title": "Test post",
+                                            "description": "Test description"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a specific user with their posts",
+                "description": "Handle the incoming request.",
+                "operationId": "0f4651eaebf6d8d4bfcc5ebadabb9e55",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to fetch",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Internal server error"
+                    },
+                    "200": {
+                        "description": "Get a specific user with their posts",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "Get a specific user with their posts": {
+                                        "summary": "Get a specific user with their posts",
+                                        "value": {
+                                            "data": {
+                                                "id": 1,
+                                                "name": "John Doe",
+                                                "email": "john@test.com",
+                                                "created_at": "2024-09-25T04:23:01.000000Z",
+                                                "posts": []
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Post",
+            "description": "Post"
+        },
+        {
+            "name": "User",
+            "description": "User"
         }
     ],
     "components": {

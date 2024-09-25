@@ -30,7 +30,7 @@ class PostCreateControllerTest extends TestCase
         ];
 
         $this->json('post', 'api/posts', $payload)
-            ->assertStatus(400);
+            ->assertStatus(401);
     }
 
     /**
