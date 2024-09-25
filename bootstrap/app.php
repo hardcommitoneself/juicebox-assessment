@@ -19,6 +19,6 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withCommands([
-        SendWelcomeEmail::class
+        SendWelcomeEmail::class,
     ])
     ->create();

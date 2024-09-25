@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Post;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -14,7 +13,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach(User::all() as $user) {
+        foreach (User::all() as $user) {
             $post = new Post;
 
             $post->title = fake()->jobTitle();

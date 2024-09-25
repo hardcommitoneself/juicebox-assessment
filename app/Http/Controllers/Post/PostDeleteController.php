@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostDeleteController extends Controller
 {
@@ -20,12 +20,12 @@ class PostDeleteController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Post Deleted Successfully'
+                'message' => 'Post Deleted Successfully',
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ], 500);
         }
     }

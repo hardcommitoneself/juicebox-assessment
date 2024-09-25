@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostCreateController extends Controller
 {
@@ -22,11 +22,11 @@ class PostCreateController extends Controller
                 'description' => 'required',
             ]);
 
-            if($validatePost->fails()){
+            if ($validatePost->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
-                    'errors' => $validatePost->errors()
+                    'errors' => $validatePost->errors(),
                 ], 400);
             }
 
@@ -42,7 +42,7 @@ class PostCreateController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ], 500);
         }
     }
