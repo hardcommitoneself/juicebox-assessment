@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PostResource;
-use App\Models\Post;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostAllController extends Controller
+class UserGetSpecificController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(string $id)
     {
         try {
-            return PostResource::collection(Post::all());
+            return new UserResource(User::findOrFail($id));
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
